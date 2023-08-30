@@ -1,0 +1,42 @@
+---
+
+version: 2
+
+pipelines:
+  # pipelines must have a unique name, a source and at least one step 
+  example7:
+    # Transformations are applied in order  
+    steps:
+      # Source types include (urlfile, urldir, file, dir)
+      # type and path are required fields for all source types
+      # some would need more than this.
+      # local files/dirs should are relative to the cwd
+      - source:
+          type: from_file
+          path: data/frank.txt
+      - transform:
+          type: split_sentences
+      - transform:
+          type: remove_short_sentences
+          min_chars: 100
+      - transform:
+          type: count_list
+    # Destination types include (stdout, file, dir)
+    # should be a file or directory relative to the cwd
+      - destination:
+          type: to_file
+          path: output/frank_sentence_count.txt
+  example8:
+    depends_on: 
+      - example6
+    steps:
+      - source:
+          type: from_file
+          path: data/frank.txt
+      - transform:
+          type: split_words
+      - transform:
+          type: count_unique_list
+      - destination:
+          type: to_stdout
+
