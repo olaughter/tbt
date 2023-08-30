@@ -1,12 +1,13 @@
 import logging
-from tempfile import NamedTemporaryFile
 import os
+from tempfile import NamedTemporaryFile
 
 from tbt.meta_types.destination import Destination
 
 
 class ToFile(Destination):
     """Write a value to a file"""
+
     input_type = str
     output_type = str
 
@@ -19,7 +20,7 @@ class ToFile(Destination):
 
     def run(self, value):
         """Write the value to the file
-        
+
         Also returns value for other uses"""
         with open(self.full_path, "w") as f:
             f.write(f"{value}")

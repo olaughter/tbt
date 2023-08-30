@@ -32,7 +32,7 @@ class tbtStep(ABC):
     @abstractmethod
     def pre_step(self):
         """Override with validations, setup, or any other pre-step actions
-        
+
         Runs at the start of the pipeline before any other step runs.
 
         This could include downloading extra dependencies, confirming
@@ -43,7 +43,7 @@ class tbtStep(ABC):
     @abstractmethod
     def run(self, value):
         """Override with the main logic of the step
-        
+
         Should take and return a value
         """
         return value
@@ -51,11 +51,10 @@ class tbtStep(ABC):
     @abstractmethod
     def post_step(self):
         """Override with cleanup, or any other post-step actions
-        
+
         Runs at the end of the pipeline after every step has run.
 
         This could include additional validation, cleaning up temporary
         files, or closing an external connection.
         """
         pass
-        

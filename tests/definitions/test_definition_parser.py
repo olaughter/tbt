@@ -1,11 +1,11 @@
-from tempfile import TemporaryDirectory
 import os
-import pickle
+from tempfile import TemporaryDirectory
 
 import pytest
 
 from tbt.definitions.definition_parser import DefinitionsParser
-from tests.fixtures import simple_steps, valid_pipelines, invalid_pipelines
+from tests.fixtures import invalid_pipelines, simple_steps, valid_pipelines
+
 
 @pytest.fixture
 def fixture_dp():
@@ -57,6 +57,7 @@ def test_definitions_parser_load_pipelines(fixture_dp):
         assert label.startswith("test_pipeline")
         assert pipeline is not None
 
+
 def test_definitions_parser_sort_pipelines_valid(valid_pipelines):
     dp = DefinitionsParser(root_dir=None)
     result = dp.sort_pipelines(valid_pipelines)
@@ -68,5 +69,5 @@ def test_definitions_parser_sort_pipelines_invalid(invalid_pipelines):
     dp = DefinitionsParser(root_dir="")
     with pytest.raises(ValueError) as err:
         dp.sort_pipelines(invalid_pipelines)
-    
+
     assert "circular dependencies" in err.value.__str__()

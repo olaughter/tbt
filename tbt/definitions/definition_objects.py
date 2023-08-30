@@ -1,10 +1,11 @@
 import os
-from typing import List
 from dataclasses import dataclass
+
 
 @dataclass
 class Definition:
     """Represents a tbt*.yaml file, defining pipelines"""
+
     root: str
     file_name: str
 
@@ -16,6 +17,7 @@ class Definition:
 
 class Pipeline:
     """Represents a single pipeline, as defined in a tbt*.yaml file"""
+
     def __init__(self, label, definition, **kwargs):
         self.label = label
         self.definition = definition
@@ -24,9 +26,7 @@ class Pipeline:
 
         self._step_defs = []
         for step_def in kwargs.get("steps"):
-            step = Step(
-                step_def=step_def,
-                root_dir=self.definition.root)
+            step = Step(step_def=step_def, root_dir=self.definition.root)
             self._step_defs.append(step)
 
     @property
@@ -34,12 +34,14 @@ class Pipeline:
         """The step definitions for this pipeline"""
         return self._step_defs
 
+
 # Type alias for pipeline lookup table
 Pipelines = dict[str, Pipeline]
 
 
 class Step:
     """Represents a single step, as defined within a pipeline within a tbt*.yaml file"""
+
     def __init__(self, step_def: dict, root_dir: str):
         self._meta_type = self.parse_step_meta_type(step_def)
         self._name = step_def[self.meta_type].get("type")
@@ -53,11 +55,11 @@ class Step:
     @property
     def meta_type(self):
         return self._meta_type
-    
+
     @property
     def name(self):
         return self._name
-    
+
     @property
     def kwargs(self):
         return self._kwargs

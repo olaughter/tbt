@@ -2,6 +2,7 @@ from abc import abstractmethod
 
 from tbt.meta_types.tbt_step import tbtStep
 
+
 class Destination(tbtStep):
     @abstractmethod
     def run(self, value):
@@ -9,6 +10,6 @@ class Destination(tbtStep):
 
     def pre_step(self):
         pass
-    
+
     def post_step(self):
         pass

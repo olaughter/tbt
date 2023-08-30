@@ -12,7 +12,7 @@ from tbt.utils import camel_to_snake, log_details
         ("CamelCase", "camel_case"),
         ("CamelCaseTest", "camel_case_test"),
         ("CamelCaseTest123", "camel_case_test123"),
-    ]
+    ],
 )
 def test_camel_to_snake(value, expected):
     got = camel_to_snake(value)

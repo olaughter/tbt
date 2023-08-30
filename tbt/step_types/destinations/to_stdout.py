@@ -5,6 +5,7 @@ from tbt.meta_types.destination import Destination
 
 class ToStdout(Destination):
     """Write a value to stdout"""
+
     input_type = str
     output_type = str
 

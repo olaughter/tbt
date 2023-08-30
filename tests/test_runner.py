@@ -1,12 +1,13 @@
-import pickle
-import os
 import logging
-
-from tbt.runner import Runner
-from tests.fixtures import spy_pipelines, simple_steps, SpyStep
+import os
+import pickle
 
 from tbt.loader import Loader
+from tbt.runner import Runner
+from tests.fixtures import SpyStep, simple_steps, spy_pipelines
+
 load_available_method = Loader.load_available
+
 
 def test_runner_prep(spy_pipelines, caplog):
     Loader.load_available = lambda *_: {"transform": None, "spy_step": SpyStep}
@@ -66,7 +67,7 @@ def test_runner_run_pre_steps(spy_pipelines, caplog):
 
 def test_runner_run_steps(spy_pipelines, caplog):
     Loader.load_available = lambda *_: {"transform": None, "spy_step": SpyStep}
-    
+
     runner = Runner(pipelines=spy_pipelines)
     runner.instantiate_steps()
 
@@ -83,7 +84,7 @@ def test_runner_run_steps(spy_pipelines, caplog):
 
 def test_runner_run_post_steps(spy_pipelines, caplog):
     Loader.load_available = lambda *_: {"transform": None, "spy_step": SpyStep}
-    
+
     runner = Runner(pipelines=spy_pipelines)
     runner.instantiate_steps()
 

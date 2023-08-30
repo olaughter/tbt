@@ -1,8 +1,8 @@
-from tbt.meta_types.source import Source
 from tbt.meta_types.destination import Destination
+from tbt.meta_types.source import Source
 from tbt.meta_types.transform import Transform
-from tbt.step_types.sources import *
 from tbt.step_types.destinations import *
+from tbt.step_types.sources import *
 from tbt.step_types.transforms import *
 
 

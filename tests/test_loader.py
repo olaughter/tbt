@@ -17,10 +17,10 @@ def test_loader_load_available():
         pass
 
     class FirstChild(Parent):
-        ref="first_child"
+        ref = "first_child"
 
     class SecondChild(Parent):
-        ref="second_child"
+        ref = "second_child"
 
     children = Loader.load_available(None, Parent)
     assert len(children) == 2

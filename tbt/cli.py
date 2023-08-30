@@ -1,14 +1,13 @@
+import logging
 import os
-import logging 
 import sys
 
 import click
-from click import option, group
+from click import group, option
 
 from tbt.definitions.definition_parser import DefinitionsParser
 from tbt.runner import Runner
 from tbt.utils import log_details
-
 
 LOGLEVEL = os.getenv("LOGLEVEL", "INFO").upper()
 LOGLEVEL = logging.getLevelName(LOGLEVEL)
@@ -18,7 +17,7 @@ logging.basicConfig(
     level=LOGLEVEL,
     stream=sys.stdout,
     format="%(asctime)s - %(levelname)s | %(message)s",
-    )
+)
 
 
 @group()
@@ -32,10 +31,10 @@ def main():
     "--dir",
     "-d",
     "root_dir",
-    default=os.getcwd(), 
+    default=os.getcwd(),
     help="directory containing tbt*.yaml files",
     type=click.Path(exists=True, file_okay=True, dir_okay=True, resolve_path=True),
-    )
+)
 @log_details
 def prep(root_dir: str):
     """Validate tbt definitions and run pre_steps"""
@@ -50,17 +49,17 @@ def prep(root_dir: str):
     "--dir",
     "-d",
     "root_dir",
-    default=os.getcwd(), 
+    default=os.getcwd(),
     help="directory containing tbt*.yaml files",
     type=click.Path(exists=True, file_okay=True, dir_okay=True, resolve_path=True),
-    )
+)
 @option(
     "--select",
     "-s",
     "select",
     help="specify a single pipeline to run, will run all if not specified",
     type=str,
-    )
+)
 @log_details
 def run(root_dir: str, select: str):
     """Run steps in pipelines"""
