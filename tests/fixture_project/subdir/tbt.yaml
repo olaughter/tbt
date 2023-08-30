@@ -1,0 +1,16 @@
+---
+
+version: 2
+
+pipelines:
+  test_pipeline3:
+    steps:
+      - source:
+          type: from_file
+          path: data/frankenstein_prologue_extended.txt
+      - transform:
+          type: split_sentences
+      - transform:
+          type: count_list
+      - destination:
+          type: to_stdout

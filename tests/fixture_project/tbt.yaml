@@ -1,0 +1,33 @@
+---
+
+version: 2
+
+pipelines:
+  test_pipeline1:
+    depends_on:
+      - test_pipeline2
+    steps:
+      - source:
+          type: from_file
+          path: data/frankenstein_prologue.txt
+      - transform:
+          type: split_sentences
+      - transform:
+          type: count_list
+      - destination:
+          type: to_stdout
+
+  test_pipeline2:
+    depends_on:
+      - test_pipeline3
+    steps:
+      - source:
+          type: from_file
+          path: data/frankenstein_prologue.txt
+      - transform:
+          type: split_words
+      - transform:
+          type: count_list
+      - destination:
+          type: to_stdout
+
