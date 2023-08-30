@@ -1,0 +1,23 @@
+[tool.poetry]
+name = "tbt"
+version = "0.1.0"
+description = ""
+authors = ["Fred Oloughlin <fred@oloughl.in>"]
+readme = "README.md"
+packages = [{ include = "tbt"}]
+
+[tool.poetry.dependencies]
+python = "^3.10"
+click = "^8.1.7"
+pytest = "^7.4.0"
+pyyaml = "^6.0.1"
+nltk = "^3.8.1"
+networkx = "^3.1"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.poetry.scripts]
+tbt = "tbt.cli:main"
