@@ -1,0 +1,26 @@
+name: ci
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  ci:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v3
+    - run: pipx install poetry
+    - uses: actions/setup-python@v4
+      with:
+        cache: 'poetry'
+    - run: poetry install
+    - name: Run Linting
+      run: |
+        poetry run flake8 .
+        poetry run isort . --diff --profile black
+        poetry run black --diff .
+    - name: Run Tests
+      run: |
+        poetry run pytest
